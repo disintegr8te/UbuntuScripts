@@ -1,4 +1,14 @@
 #!/bin/bash
+#killall running apt processes
+sudo killall apt apt-get
+
+#remove dpkg locks
+sudo rm /var/lib/dpkg/lock-frontend
+
+#reconfigure dpkg
+sudo dpkg --configure -a
+
+
 # check if the reboot flag file exists. 
 if [ ! -f /var/tmp/resume-after-reboot_dist1 ]; then
   echo "running script for the first time.."
