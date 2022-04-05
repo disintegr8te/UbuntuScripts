@@ -6,4 +6,6 @@ sudo apt update -y
 export DEBIAN_FRONTEND=noninteractive
 sudo -E apt-get -o Dpkg::Options::="--force-confold" -o Dpkg::Options::="--force-confdef" dist-upgrade -q -y --allow-downgrades --allow-remove-essential --allow-change-held-packages
 sudo apt install update-manager-core -y
-sudo do-release-upgrade -d -f DistUpgradeViewNonInteractive
+sudo sync
+sudo reboot
+sudo do-release-upgrade -f DistUpgradeViewNonInteractive
