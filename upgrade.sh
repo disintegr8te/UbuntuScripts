@@ -4,7 +4,6 @@ if [ ! -f /var/run/resume-after-reboot_dist1 ]; then
   echo "running script for the first time.."
   
 #Get Release
-uname -a
 lsb_release -a
 
 #Update Package Sources
@@ -44,5 +43,7 @@ else
 
   #Make the release Upgrade
   sudo do-release-upgrade -f DistUpgradeViewNonInteractive
-  
+  sudo apt autoremove -y
+  sudo apt update -y
+  lsb_release -a
 fi
