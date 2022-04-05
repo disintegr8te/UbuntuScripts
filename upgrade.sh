@@ -1,6 +1,6 @@
 #!/bin/bash
 # check if the reboot flag file exists. 
-if [ ! -f /var/run/resume-after-reboot_dist1 ]; then
+if [ ! -f /var/tmp/resume-after-reboot_dist1 ]; then
   echo "running script for the first time.."
   
   #Get Release
@@ -20,7 +20,7 @@ if [ ! -f /var/run/resume-after-reboot_dist1 ]; then
   sudo sync
   
   #create a flag file to check if we are resuming from reboot.
-  sudo touch /var/run/resume-after-reboot_dist1
+  sudo touch /var/tmp/resume-after-reboot_dist1
  
 #reboot 1. Time
   echo "rebooting.."
@@ -28,11 +28,11 @@ if [ ! -f /var/run/resume-after-reboot_dist1 ]; then
 fi 
 
 
-if [-f /var/run/resume-after-reboot_dist1]; then
+if [-f /var/tmp/resume-after-reboot_dist1]; then
   echo "resuming script after reboot.."
   
   # remove the temporary file that we created to check for reboot
-  sudo rm -f /var/run/resume-after-reboot_dist1
+  sudo rm -f /var/tmp/resume-after-reboot_dist1
 
   #Make the release Upgrade
   sudo do-release-upgrade -f DistUpgradeViewNonInteractive
