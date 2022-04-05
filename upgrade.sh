@@ -36,7 +36,8 @@ if [ -f /var/tmp/resume-after-reboot_dist1 ]; then
 
    #Make the release Upgrade
    sudo do-release-upgrade -f DistUpgradeViewNonInteractive
-      
+   sleep 2m 30s
+   
    #Get Release Version
    lsb_release -a
    
