@@ -36,16 +36,13 @@ if [ -f /var/tmp/resume-after-reboot_dist1 ]; then
 
    #Make the release Upgrade
    sudo do-release-upgrade -f DistUpgradeViewNonInteractive
-   
-    #Update Package Sources
-   sudo apt update -y
-   
-   #Remove not needed Packages
-   sudo apt autoremove -y
-
-   
+      
    #Get Release Version
    lsb_release -a
+   
+  #reboot 2. Time
+  echo "rebooting.."
+  sudo reboot
     
 fi
 
