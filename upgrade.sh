@@ -28,16 +28,19 @@ if [ ! -f /var/tmp/resume-after-reboot_dist1 ]; then
 fi 
 
 
-if [-f /var/tmp/resume-after-reboot_dist1]; then
-  echo "resuming script after reboot.."
+FILE=/var/tmp/resume-after-reboot_dist1
+if [[ -f "$FILE" ]]; then
+    echo "$FILE exists."
+     echo "resuming script after reboot.."
   
-  # remove the temporary file that we created to check for reboot
-  sudo rm -f /var/tmp/resume-after-reboot_dist1
+    # remove the temporary file that we created to check for reboot
+    sudo rm -f /var/tmp/resume-after-reboot_dist1
 
-  #Make the release Upgrade
-  sudo do-release-upgrade -f DistUpgradeViewNonInteractive
-  sudo apt autoremove -y
-  sudo apt update -y
-  lsb_release -a
+   #Make the release Upgrade
+   sudo do-release-upgrade -f DistUpgradeViewNonInteractive
+   sudo apt autoremove -y
+   sudo apt update -y
+   lsb_release -a
+    
 fi
 
