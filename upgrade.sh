@@ -1,7 +1,7 @@
 #!/bin/bash
 # check if the reboot flag file exists. 
 # We created this file before rebooting.
-if [ ! -f /var/run/resume-after-reboot ]; then
+if [ ! -f /var/run/resume-after-reboot_dist ]; then
   echo "running script for the first time.."
   
 uname -a
@@ -16,12 +16,11 @@ sudo sync
   # Preparation for reboot
   script="bash /upgrade.sh"
   
-  # add this script to zsh so it gets triggered immediately after reboot
-  # change it to .bashrc if using bash shell
-  echo "$script" >> ~/.zshrc 
+  # add this script to .bashrcso it gets triggered immediately after reboot
+  echo "$script" >> ~/.bachrc
   
-  # create a flag file to check if we are resuming from reboot.
-  sudo touch /var/run/resume-after-reboot
+    # create a flag file to check if we are resuming from reboot.
+  sudo touch /var/run/resume-after-reboot_dist
   
   echo "rebooting.."
   sudo reboot
@@ -29,11 +28,11 @@ sudo sync
 else 
   echo "resuming script after reboot.."
   
-  # Remove the line that we added in zshrc
-  sed -i '/bash/d' ~/.zshrc 
+  # Remove the line that we added in bashrc
+  sed -i '/bash/d' ~/.bashrc 
   
   # remove the temporary file that we created to check for reboot
-  sudo rm -f /var/run/resume-after-reboot
+  sudo rm -f /var/run/resume-after-reboot_dist
 
   # continue with rest of the script
   sudo do-release-upgrade -f DistUpgradeViewNonInteractive
