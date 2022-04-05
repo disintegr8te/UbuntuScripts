@@ -27,10 +27,8 @@ if [ ! -f /var/tmp/resume-after-reboot_dist1 ]; then
   sudo reboot
 fi 
 
-
-FILE=/var/tmp/resume-after-reboot_dist1
-if [[ -f "$FILE" ]]; then
-    echo "$FILE exists."
+if [[ -f "/var/tmp/resume-after-reboot_dist1" ]]; then
+    echo "File exists."
      echo "resuming script after reboot.."
   
     # remove the temporary file that we created to check for reboot
