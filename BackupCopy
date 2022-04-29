@@ -1,0 +1,27 @@
+# Script for Log Backup
+# monitor current directory ./
+# and get dir/file paths on these file-system events:
+# - close_write (file written and closed)
+# - create (file created)
+# - moved_to (file moved to here)
+
+inotifywait \
+  --quiet \
+  --monitor \
+  --event close_write \
+  --event create \
+  --event moved_to \
+  --format '%w%f' \
+  ./ \
+  | {
+    # loop through all files
+    # as inotifywait may return multiple files (one per line)
+    while read -r LATEST; do
+      rsync \
+        --archive \
+        --compress \
+        --verbose \
+        "${LATEST}" \
+        mount//.
+    done
+  }
